@@ -1,0 +1,44 @@
+{
+  "name": "Content",
+  "plural": "Contents",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "contentTypeId": {
+      "type": "integer",
+      "required": true
+    },
+    "content": {
+      "type": "string",
+      "required": true
+    },
+    "tags": {
+      "type": "array",
+      "required": false,
+      "defaultValue": []
+    },
+    "created": {
+      "type": "date",
+      "required": true
+    },
+    "updated": {
+      "type": "date",
+      "required": true
+    },
+    "disabled": {
+      "type": "boolean",
+      "required": false,
+      "defaultValue": false
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

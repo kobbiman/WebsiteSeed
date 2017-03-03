@@ -1,0 +1,14 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "website": {
+    "host": "localhost",
+    "database": "website_seed",
+    "username": "root",
+    "password": "root",
+    "name": "website",
+    "connector": "mysql"
+  }
+}
