@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "node-sass": "^4.5.0",
-    "sass-loader": "^6.0.2",
     "autoprefixer": "6.7.2",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
@@ -19,6 +17,8 @@
     "css-loader": "0.26.1",
     "detect-port": "1.0.1",
     "dotenv": "2.0.0",
+    "enzyme": "^2.7.1",
+    "enzyme-to-json": "^1.5.0",
     "eslint": "3.8.1",
     "eslint-config-react-app": "^0.5.2",
     "eslint-loader": "1.6.0",
@@ -26,6 +26,7 @@
     "eslint-plugin-import": "2.0.1",
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.4.1",
+    "expect": "^1.20.2",
     "extract-text-webpack-plugin": "1.0.1",
     "file-loader": "0.10.0",
     "filesize": "3.3.0",
@@ -35,11 +36,15 @@
     "http-proxy-middleware": "0.17.3",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+    "node-sass": "^4.5.0",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
+    "react-addons-test-utils": "^15.4.2",
     "react-dev-utils": "^0.5.1",
+    "react-test-renderer": "^15.4.2",
     "recursive-readdir": "2.1.1",
+    "sass-loader": "^6.0.2",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
@@ -50,10 +55,10 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "material-ui": "^0.17.0",
     "react": "^15.4.2",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.2",
-    "react-tap-event-plugin": "^2.0.1"
+    "react-fontawesome": "^1.5.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -82,7 +87,10 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
-    }
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   },
   "babel": {
     "presets": [

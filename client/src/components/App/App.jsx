@@ -1,19 +1,83 @@
+import './App.scss';
+
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import Button from 'react-bootstrap/lib/Button';
+import Jumbotron from 'react-bootstrap/lib/Jumbotron';
+import Col from 'react-bootstrap/lib/Col';
+import Row from 'react-bootstrap/lib/Row';
+import Panel from 'react-bootstrap/lib/Panel';
+import FontAwesome from 'react-fontawesome';
 import Header from '../Header/Header';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-
 class App extends Component {
+    buildFeaturedBlocks () {
+        return [
+            {
+                title: 'Easy',
+                body: 'Easy to change',
+                style: 'info',
+                icon: 'wrench'
+            },
+            {
+                title: 'Extend',
+                body: 'Thought to be reused',
+                style: 'warning',
+                icon: 'cubes'
+            },
+            {
+                title: 'Clear',
+                body: 'Clean coding specs',
+                style: 'success',
+                icon: 'leaf'
+            },
+            {
+                title: 'Innovative',
+                body: 'Stack: Loopback + Redux + React',
+                style: 'danger',
+                icon: 'rocket'
+            }
+        ].map((block, index) => {
+            const { title, body, style, icon } = block;
+            const header = (
+                <h3>
+                    <FontAwesome name={icon} /> {title}
+                </h3>
+            );
+
+            return (
+                <Col key={index} sm={3}>
+                    <Panel header={header} bsStyle={style}>
+                        {body}
+                    </Panel>
+                </Col>
+            );
+        });
+    }
+
     render() {
+        const welcomeTitle = 'Welcome to Website Seed!';
+        const welcomeMessage = 'A website seed using loopback.io and ReactJS';
+        const linkLabel = 'See it on Github';
+        const githubUrl = 'https://github.com/nicolasepiscopo/WebsiteSeed';
+        const featuredBlocks = this.buildFeaturedBlocks();
+
         return (
             <section className="app">
-                <MuiThemeProvider>
-                    <Header />
-                </MuiThemeProvider>
+                <Header />
+                <section className="container">
+                    <Jumbotron>
+                        <h1>{welcomeTitle}</h1>
+                        <p>{welcomeMessage}</p>
+                        <p className="text-right">
+                            <Button bsStyle="primary" href={githubUrl} target="_blank">
+                                {linkLabel} <FontAwesome name="github-alt" />
+                            </Button>
+                        </p>
+                    </Jumbotron>
+                    <Row>
+                        {featuredBlocks}
+                    </Row>
+                </section>
             </section>
         );
     }

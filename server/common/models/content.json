@@ -18,6 +18,10 @@
       "type": "string",
       "required": true
     },
+    "customFields": {
+      "type": "object",
+      "required": false
+    },
     "tags": {
       "type": "array",
       "required": false,

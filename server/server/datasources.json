@@ -7,7 +7,7 @@
     "host": "localhost",
     "database": "website_seed",
     "username": "root",
-    "password": "root",
+    "password": "",
     "name": "website",
     "connector": "mysql"
   }
