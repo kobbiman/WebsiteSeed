@@ -46,5 +46,45 @@
   "Content": {
     "dataSource": "website",
     "public": true
+  },
+  "ContentTypeField": {
+    "dataSource": "website",
+    "public": true
+  },
+  "ContentField": {
+    "dataSource": "website",
+    "public": true
+  },
+  "FieldType": {
+    "dataSource": "website",
+    "public": true
+  },
+  "FieldTypeSetting": {
+    "dataSource": "website",
+    "public": true
+  },
+  "Menu": {
+    "dataSource": "website",
+    "public": true
+  },
+  "MenuLink": {
+    "dataSource": "website",
+    "public": true
+  },
+  "Layout": {
+    "dataSource": "website",
+    "public": true
+  },
+  "LayoutPlace": {
+    "dataSource": "website",
+    "public": true
+  },
+  "LayoutContainer": {
+    "dataSource": "website",
+    "public": true
+  },
+  "LayoutContainerPlace": {
+    "dataSource": "website",
+    "public": true
   }
 }

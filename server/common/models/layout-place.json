@@ -1,6 +1,6 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "LayoutPlace",
+  "plural": "LayoutPlaces",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,19 +11,13 @@
       "type": "string",
       "required": true
     },
-    "title": {
+    "path": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
-  "relations": {
-    "contentTypeFields": {
-      "type": "hasAndBelongsToMany",
-      "model": "ContentTypeField",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

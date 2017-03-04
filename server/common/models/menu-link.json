@@ -1,6 +1,6 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "MenuLink",
+  "plural": "MenuLinks",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,19 +11,17 @@
       "type": "string",
       "required": true
     },
-    "title": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
       "type": "string",
       "required": true
     }
   },
   "validations": [],
-  "relations": {
-    "contentTypeFields": {
-      "type": "hasAndBelongsToMany",
-      "model": "ContentTypeField",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }

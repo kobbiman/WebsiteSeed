@@ -1,6 +1,6 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "Layout",
+  "plural": "Layouts",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,17 +10,18 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "title": {
-      "type": "string",
-      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "contentTypeFields": {
+    "layoutPlace": {
+      "type": "belongsTo",
+      "model": "LayoutPlace",
+      "foreignKey": ""
+    },
+    "layoutContainers": {
       "type": "hasAndBelongsToMany",
-      "model": "ContentTypeField",
+      "model": "LayoutContainer",
       "foreignKey": ""
     }
   },

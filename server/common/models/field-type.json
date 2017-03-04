@@ -1,6 +1,6 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "FieldType",
+  "plural": "FieldTypes",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -10,17 +10,13 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "title": {
-      "type": "string",
-      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "contentTypeFields": {
+    "fieldTypeSettings": {
       "type": "hasAndBelongsToMany",
-      "model": "ContentTypeField",
+      "model": "FieldTypeSetting",
       "foreignKey": ""
     }
   },

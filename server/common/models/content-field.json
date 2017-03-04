@@ -1,25 +1,20 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "ContentField",
+  "plural": "ContentFields",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "title": {
-      "type": "string",
-      "required": true
+    "value": {
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "contentTypeFields": {
-      "type": "hasAndBelongsToMany",
+    "contentTypeField": {
+      "type": "belongsTo",
       "model": "ContentTypeField",
       "foreignKey": ""
     }

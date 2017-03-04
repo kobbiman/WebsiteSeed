@@ -1,6 +1,6 @@
 {
-  "name": "ContentType",
-  "plural": "ContentTypes",
+  "name": "LayoutContainer",
+  "plural": "LayoutContainers",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -8,19 +8,19 @@
   },
   "properties": {
     "name": {
-      "type": "string",
-      "required": true
-    },
-    "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],
   "relations": {
-    "contentTypeFields": {
+    "layoutContainerPlace": {
+      "type": "belongsTo",
+      "model": "LayoutContainerPlace",
+      "foreignKey": ""
+    },
+    "contents": {
       "type": "hasAndBelongsToMany",
-      "model": "ContentTypeField",
+      "model": "Content",
       "foreignKey": ""
     }
   },

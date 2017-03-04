@@ -10,10 +10,6 @@
     "title": {
       "type": "string"
     },
-    "contentTypeId": {
-      "type": "integer",
-      "required": true
-    },
     "content": {
       "type": "string",
       "required": true
@@ -42,7 +38,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "contentType": {
+      "type": "belongsTo",
+      "model": "ContentType",
+      "foreignKey": ""
+    },
+    "contentFields": {
+      "type": "hasAndBelongsToMany",
+      "model": "ContentField",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
