@@ -5,7 +5,11 @@ import { App } from 'src/routes/App/App';
 
 global.sessionStorage = new SessionStorageMock;
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<App />, div);
+describe('Route :: App', () => {
+
+    it('renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<App />, div);
+    });
+
 });

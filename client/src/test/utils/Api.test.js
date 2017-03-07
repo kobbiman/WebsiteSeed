@@ -2,17 +2,24 @@ import Api from 'src/utils/Api';
 import expect from 'expect';
 import { difference } from 'lodash';
 
-let apiInstance;
 
-it('Should instanciate an object', function () {
-    apiInstance = new Api;
+describe('Utils :: Api', () => {
 
-    expect(typeof apiInstance).toBe('object');
-});
+    let apiInstance;
 
-it('Should instanciate an object with these properties', function () {
-    const mustHaveProps = [ 'request', 'delete', 'head', 'post', 'put', 'patch'];
-    const properties = Object.keys(apiInstance);
+    beforeEach(() => {
+        apiInstance = new Api;
+    });
 
-    expect(difference(properties, mustHaveProps).length).toBe(0);
+    it('Should instanciate an object', function () {
+        expect(typeof apiInstance).toBe('object');
+    });
+
+    it('Should instanciate an object with these properties', function () {
+        const mustHaveProps = [ 'request', 'delete', 'head', 'post', 'put', 'patch'];
+        const properties = Object.keys(apiInstance);
+
+        expect(difference(properties, mustHaveProps).length).toBe(0);
+    });
+
 });

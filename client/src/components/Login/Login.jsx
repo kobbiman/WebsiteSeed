@@ -91,5 +91,9 @@ export default class Login extends Component {
 Login.propTypes = {
     immLogin: PropTypes.object,
     authenticate: PropTypes.func,
-    onSuccess: PropTypes.func.isRequired
+    onSuccess: PropTypes.func
+}
+
+Login.defaultProps = {
+    onSuccess: () => {}
 }

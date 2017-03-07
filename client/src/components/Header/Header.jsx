@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
 import Login from 'src/components/Login/Login';
-import Dropdown from 'src/components/Common/Dropdown/Dropdown';
+import Popover from 'src/components/Common/Popover/Popover';
 import { reset, getUserId } from 'src/utils/Auth';
 
 export default class Header extends Component {
@@ -11,42 +11,50 @@ export default class Header extends Component {
         super(props);
 
         this.state = {
-            loginDropdownOpen: false
+            loginPopoverOpen: false
         }
 
         this.buildLoginButtons = this.buildLoginButtons.bind(this);
         this.buildNavbar = this.buildNavbar.bind(this);
         this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
         this.handleCloseSession = this.handleCloseSession.bind(this);
+        this.handleToggleLoginPopover = this.handleToggleLoginPopover.bind(this);
     }
 
-    handleCloseSession () {
+    handleToggleLoginPopover (e) {
+        e.preventDefault();
+        this.setState({
+            loginPopoverOpen: !this.state.loginPopoverOpen
+        });
+    }
+
+    handleCloseSession (e) {
+        e.preventDefault();
         reset();
         this.forceUpdate();
     }
 
     handleLoginSuccess () {
         this.setState({
-            loginDropdownOpen: false
+            loginPopoverOpen: false
         });
     }
 
     buildLoginButtons () {
-        const { immLogin, authenticate } = this.props;
         const isAuthenticated = !!getUserId();
         let content;
 
         if (isAuthenticated) {
             content = (
                 <NavItem eventKey={1} href="#" onClick={this.handleCloseSession}>
-                    Sign Out
+                    <span id="signOutButton">Sign Out</span>
                 </NavItem>
             );
-        } else {
+        } else if (!this.state.loginPopoverOpen) {
             content = (
-                <Dropdown label={'Sign In'} isOpen={this.state.loginDropdownOpen}>
-                    <Login immLogin={immLogin} authenticate={authenticate} onSuccess={this.handleLoginSuccess} />
-                </Dropdown>
+                <NavItem eventKey={1} href="#" onClick={this.handleToggleLoginPopover}>
+                    <span id="signInButton">Sign In</span>
+                </NavItem>
             );
         }
 
@@ -72,10 +80,16 @@ export default class Header extends Component {
     }
 
     render() {
+        const { immLogin, authenticate } = this.props;
         const navbar = this.buildNavbar();
 
         return (
             <header className="header">
+                <section className="container">
+                    <Popover isOpen={this.state.loginPopoverOpen} onToggle={this.handleToggleLoginPopover}>
+                        <Login immLogin={immLogin} authenticate={authenticate} onSuccess={this.handleLoginSuccess} />
+                    </Popover>
+                </section>
                 {navbar}
             </header>
         );
