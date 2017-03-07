@@ -1,2 +1,2 @@
-# WebsiteSeed
-A website seed using loopback.io and ReactJS
+# WebsiteSeed - CMS
+A website seed for building CMS using loopback.io and ReactJS
