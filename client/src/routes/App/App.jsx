@@ -10,8 +10,13 @@ import Panel from 'react-bootstrap/lib/Panel';
 import FontAwesome from 'react-fontawesome';
 import Header from 'src/components/Header/Header';
 import { authenticate } from 'src/actions/login';
+import { getConfiguration } from 'src/actions/configuration';
 
 export class App extends Component {
+    componentDidMount () {
+        this.props.getConfiguration();
+    }
+
     buildFeaturedBlocks () {
         return [
             {
@@ -57,7 +62,7 @@ export class App extends Component {
     }
 
     render() {
-        const { immLogin, authenticate } = this.props;
+        const { immLogin, immConfiguration, authenticate } = this.props;
         const welcomeTitle = 'Welcome to Website Seed!';
         const welcomeMessage = 'A website seed using loopback.io and ReactJS';
         const linkLabel = 'See it on Github';
@@ -66,7 +71,7 @@ export class App extends Component {
 
         return (
             <section className="app">
-                <Header immLogin={immLogin} authenticate={authenticate} />
+                <Header immLogin={immLogin} immConfiguration={immConfiguration} authenticate={authenticate} />
                 <section className="container">
                     <Jumbotron>
                         <h1>{welcomeTitle}</h1>
@@ -88,11 +93,15 @@ export class App extends Component {
 
 App.propTypes = {
     immLogin: PropTypes.object,
-    authenticate: PropTypes.func
+    immConfiguration: PropTypes.object,
+    authenticate: PropTypes.func,
+    getConfiguration: PropTypes.func
 }
 
 export default connect(state => ({
-    immLogin: state.loginReducer
+    immLogin: state.loginReducer,
+    immConfiguration: state.configurationReducer
 }), {
-    authenticate
+    authenticate,
+    getConfiguration
 })(App);

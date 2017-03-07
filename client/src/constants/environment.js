@@ -6,7 +6,8 @@ const environment = {
         }
     },
     endpoints: {
-        login: '/Users/login'
+        login: '/Users/login',
+        configurations: '/Configurations'
     }
 }
 

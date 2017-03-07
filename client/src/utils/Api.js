@@ -11,6 +11,11 @@ export default function Api () {
 
             return axios.request(`${host}${relativePath}`, ...params);
         },
+        get (endpoint, ...params) {
+            const relativePath = getEndpoint(endpoint);
+
+            return axios.get(`${host}${relativePath}`, ...params);
+        },
         delete (endpoint, ...params) {
             const relativePath = getEndpoint(endpoint);
 

@@ -62,7 +62,8 @@ export default class Header extends Component {
     }
 
     buildNavbar () {
-        const title = 'Website Seed';
+        const { immConfiguration } = this.props;
+        const title = immConfiguration.getIn(['data', 'siteName']);
         const loginButtons = this.buildLoginButtons();
 
         return (
@@ -98,5 +99,6 @@ export default class Header extends Component {
 
 Header.propTypes = {
     immLogin: PropTypes.object,
+    immConfiguration: PropTypes.object,
     authenticate: PropTypes.func
 }
