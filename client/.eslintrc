@@ -31,7 +31,7 @@
         "no-cond-assign": 2,
         "no-console": 2,
         "no-constant-condition": 0, // standard: 2 //  to be changed in the near future
-        "no-debugger": 2,
+        "no-debugger": 1,
         "no-case-declarations": 0,
         "no-extra-boolean-cast": 0, // standard: 2 //  to be changed in the near future
         "no-extra-semi": 2,

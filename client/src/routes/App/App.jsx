@@ -1,15 +1,17 @@
 import './App.scss';
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Button from 'react-bootstrap/lib/Button';
 import Jumbotron from 'react-bootstrap/lib/Jumbotron';
 import Col from 'react-bootstrap/lib/Col';
 import Row from 'react-bootstrap/lib/Row';
 import Panel from 'react-bootstrap/lib/Panel';
 import FontAwesome from 'react-fontawesome';
-import Header from '../Header/Header';
+import Header from 'src/components/Header/Header';
+import { authenticate } from 'src/actions/login';
 
-class App extends Component {
+export class App extends Component {
     buildFeaturedBlocks () {
         return [
             {
@@ -55,6 +57,7 @@ class App extends Component {
     }
 
     render() {
+        const { immLogin, authenticate } = this.props;
         const welcomeTitle = 'Welcome to Website Seed!';
         const welcomeMessage = 'A website seed using loopback.io and ReactJS';
         const linkLabel = 'See it on Github';
@@ -63,7 +66,7 @@ class App extends Component {
 
         return (
             <section className="app">
-                <Header />
+                <Header immLogin={immLogin} authenticate={authenticate} />
                 <section className="container">
                     <Jumbotron>
                         <h1>{welcomeTitle}</h1>
@@ -83,4 +86,13 @@ class App extends Component {
     }
 }
 
-export default App;
+App.propTypes = {
+    immLogin: PropTypes.object,
+    authenticate: PropTypes.func
+}
+
+export default connect(state => ({
+    immLogin: state.loginReducer
+}), {
+    authenticate
+})(App);

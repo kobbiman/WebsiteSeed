@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '../components/App/App';
+import { SessionStorageMock } from 'src/test/mocks';
+import { App } from 'src/routes/App/App';
+
+global.sessionStorage = new SessionStorageMock;
 
 it('renders without crashing', () => {
     const div = document.createElement('div');

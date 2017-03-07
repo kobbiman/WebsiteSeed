@@ -1,13 +1,61 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Navbar from 'react-bootstrap/lib/Navbar';
 import Nav from 'react-bootstrap/lib/Nav';
 import NavItem from 'react-bootstrap/lib/NavItem';
-import NavDropdown from 'react-bootstrap/lib/NavDropdown';
-import MenuItem from 'react-bootstrap/lib/MenuItem';
+import Login from 'src/components/Login/Login';
+import Dropdown from 'src/components/Common/Dropdown/Dropdown';
+import { reset, getUserId } from 'src/utils/Auth';
 
 export default class Header extends Component {
+    constructor (props) {
+        super(props);
+
+        this.state = {
+            loginDropdownOpen: false
+        }
+
+        this.buildLoginButtons = this.buildLoginButtons.bind(this);
+        this.buildNavbar = this.buildNavbar.bind(this);
+        this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
+        this.handleCloseSession = this.handleCloseSession.bind(this);
+    }
+
+    handleCloseSession () {
+        reset();
+        this.forceUpdate();
+    }
+
+    handleLoginSuccess () {
+        this.setState({
+            loginDropdownOpen: false
+        });
+    }
+
+    buildLoginButtons () {
+        const { immLogin, authenticate } = this.props;
+        const isAuthenticated = !!getUserId();
+        let content;
+
+        if (isAuthenticated) {
+            content = (
+                <NavItem eventKey={1} href="#" onClick={this.handleCloseSession}>
+                    Sign Out
+                </NavItem>
+            );
+        } else {
+            content = (
+                <Dropdown label={'Sign In'} isOpen={this.state.loginDropdownOpen}>
+                    <Login immLogin={immLogin} authenticate={authenticate} onSuccess={this.handleLoginSuccess} />
+                </Dropdown>
+            );
+        }
+
+        return content;
+    }
+
     buildNavbar () {
         const title = 'Website Seed';
+        const loginButtons = this.buildLoginButtons();
 
         return (
             <Navbar fixedTop>
@@ -16,16 +64,8 @@ export default class Header extends Component {
                         <a href="#">{title}</a>
                     </Navbar.Brand>
                 </Navbar.Header>
-                <Nav>
-                    <NavItem eventKey={1} href="#">Link</NavItem>
-                    <NavItem eventKey={2} href="#">Link</NavItem>
-                    <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-                        <MenuItem eventKey={3.1}>Action</MenuItem>
-                        <MenuItem eventKey={3.2}>Another action</MenuItem>
-                        <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                        <MenuItem divider />
-                        <MenuItem eventKey={3.3}>Separated link</MenuItem>
-                    </NavDropdown>
+                <Nav pullRight>
+                    {loginButtons}
                 </Nav>
             </Navbar>
         );
@@ -40,4 +80,9 @@ export default class Header extends Component {
             </header>
         );
     }
+}
+
+Header.propTypes = {
+    immLogin: PropTypes.object,
+    authenticate: PropTypes.func
 }
