@@ -21,7 +21,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "menu": {
+      "type": "belongsTo",
+      "model": "Menu",
+      "foreignKey": "menuId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

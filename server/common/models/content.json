@@ -42,10 +42,10 @@
     "contentType": {
       "type": "belongsTo",
       "model": "ContentType",
-      "foreignKey": ""
+      "foreignKey": "contentTypeId"
     },
     "contentFields": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "ContentField",
       "foreignKey": ""
     }

@@ -5,11 +5,7 @@ import { difference } from 'lodash';
 
 describe('Utils :: Api', () => {
 
-    let apiInstance;
-
-    beforeEach(() => {
-        apiInstance = new Api;
-    });
+    let apiInstance = new Api;
 
     it('Should instanciate an object', function () {
         expect(typeof apiInstance).toBe('object');

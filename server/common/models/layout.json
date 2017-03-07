@@ -17,10 +17,10 @@
     "layoutPlace": {
       "type": "belongsTo",
       "model": "LayoutPlace",
-      "foreignKey": ""
+      "foreignKey": "layoutPlaceId"
     },
     "layoutContainers": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "LayoutContainer",
       "foreignKey": ""
     }

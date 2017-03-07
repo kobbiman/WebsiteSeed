@@ -19,7 +19,7 @@
   "validations": [],
   "relations": {
     "contentTypeFields": {
-      "type": "hasAndBelongsToMany",
+      "type": "hasMany",
       "model": "ContentTypeField",
       "foreignKey": ""
     }

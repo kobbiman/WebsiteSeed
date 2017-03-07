@@ -21,7 +21,7 @@
     "fieldType": {
       "type": "belongsTo",
       "model": "FieldType",
-      "foreignKey": ""
+      "foreignKey": "fieldTypeId"
     }
   },
   "acls": [],

@@ -13,15 +13,20 @@
   },
   "validations": [],
   "relations": {
+    "layout": {
+      "type": "belongsTo",
+      "model": "Layout",
+      "foreignKey": "layoutId"
+    },
     "layoutContainerPlace": {
       "type": "belongsTo",
       "model": "LayoutContainerPlace",
-      "foreignKey": ""
+      "foreignKey": "layoutContainerPlaceId"
     },
     "contents": {
-      "type": "hasAndBelongsToMany",
+      "type": "belongsTo",
       "model": "Content",
-      "foreignKey": ""
+      "foreignKey": "contentId"
     }
   },
   "acls": [],

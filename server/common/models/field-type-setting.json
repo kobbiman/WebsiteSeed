@@ -19,7 +19,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "fieldType": {
+      "type": "belongsTo",
+      "model": "FieldType",
+      "foreignKey": "fieldTypeId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

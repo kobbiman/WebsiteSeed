@@ -13,10 +13,15 @@
   },
   "validations": [],
   "relations": {
+    "content": {
+      "type": "belongsTo",
+      "model": "Content",
+      "foreignKey": "contentId"
+    },
     "contentTypeField": {
       "type": "belongsTo",
       "model": "ContentTypeField",
-      "foreignKey": ""
+      "foreignKey": "contentTypeFieldId"
     }
   },
   "acls": [],
