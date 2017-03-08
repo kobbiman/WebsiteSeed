@@ -11,6 +11,10 @@
       "type": "string",
       "required": true
     },
+    "machineName": {
+      "type": "string",
+      "required": true
+    },
     "description": {
       "type": "string"
     }

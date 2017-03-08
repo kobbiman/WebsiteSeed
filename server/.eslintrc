@@ -1,3 +1,24 @@
 {
-  "extends": "loopback"
+  "extends": ["loopback", "eslint:recommended"],
+  "rules": {
+    //More rules in: http://eslint.org/docs/rules/
+    "comma-dangle": 0, // standard: 2 // too many errors to fix now
+    "jsx-quotes": 1, // standard: [2, "prefer-single"], // too many errors to fix
+    "no-cond-assign": 2,
+    "no-console": 2,
+    "no-constant-condition": 0, // standard: 2 //  to be changed in the near future
+    "no-debugger": 1,
+    "no-case-declarations": 0,
+    "no-extra-boolean-cast": 0, // standard: 2 //  to be changed in the near future
+    "no-extra-semi": 2,
+    "no-fallthrough": 0, // standard: 2 //  to be changed in the near future
+    "no-func-assign": 2,
+    "no-inner-declarations": 2,
+    "no-undef": 2,
+    //"no-unreachable": 2,
+    "no-unused-vars": [2, {
+        "args": "after-used"
+    }],
+    "no-use-before-define": 0
+  }
 }

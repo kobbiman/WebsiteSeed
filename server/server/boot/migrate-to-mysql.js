@@ -9,7 +9,7 @@ module.exports = function(app) {
 
 	consoleUtils.log('Trying to automigrate model to database');
 
-	app.dataSources.website.automigrate(function (err) {
+	app.dataSources.website.autoupdate(function (err) {
 		if (err) {
 			consoleUtils.error('Automigrate failed');
 		} else {
@@ -25,12 +25,12 @@ module.exports = function(app) {
 
 	function insertBasicEntities () {
 		var user = {};
-		
+
 		consoleUtils.log('Trying to insert base entities into database');
 
 		User.create({
 			username: 'admin',
-			email: 'admin@admin.com', 
+			email: 'admin@admin.com',
 			password: 'admin'
 		}, function(err, userInstance) {
 			if (err) {
@@ -44,13 +44,13 @@ module.exports = function(app) {
 		Role.create({
 			name: 'admin'
 		}, function(err, roleInstance) {
-			if (err) { 
+			if (err) {
 				consoleUtils.error(err.details.codes);
 			} else {
 				roleInstance.principals.create({
 					principalType: RoleMapping.USER,
 					principalId: user.id
-				}, function(err, principal) {
+				}, function(err) {
 					if (err) {
 						consoleUtils.error(err.details.codes);
 					} else {

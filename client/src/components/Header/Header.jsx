@@ -19,6 +19,7 @@ export default class Header extends Component {
         this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
         this.handleCloseSession = this.handleCloseSession.bind(this);
         this.handleToggleLoginPopover = this.handleToggleLoginPopover.bind(this);
+        this.buildSiteMenu = this.buildSiteMenu.bind(this);
     }
 
     handleToggleLoginPopover (e) {
@@ -61,10 +62,30 @@ export default class Header extends Component {
         return content;
     }
 
+    buildSiteMenu () {
+        const { immMenus } = this.props;
+        let siteMenu;
+
+        if (immMenus) {
+            const immMenu = immMenus.get('data').find(immMenu => immMenu.get('machineName') === 'main-menu');
+
+            if(immMenu) {
+                siteMenu = immMenu.get('links') && immMenu.get('links').map((immLink, index) => (
+                    <NavItem key={index} eventKey={index+1} href={immLink.get('url')}>
+                        {immLink.get('label')}
+                    </NavItem>
+                ));
+            }
+        }
+
+        return siteMenu;
+    }
+
     buildNavbar () {
         const { immConfiguration } = this.props;
-        const title = immConfiguration.getIn(['data', 'siteName']);
+        const title = immConfiguration && immConfiguration.getIn(['data', 'siteName']);
         const loginButtons = this.buildLoginButtons();
+        const siteMenu = this.buildSiteMenu();
 
         return (
             <Navbar fixedTop>
@@ -73,6 +94,9 @@ export default class Header extends Component {
                         <a href="#">{title}</a>
                     </Navbar.Brand>
                 </Navbar.Header>
+                <Nav>
+                    {siteMenu}
+                </Nav>
                 <Nav pullRight>
                     {loginButtons}
                 </Nav>
@@ -100,5 +124,6 @@ export default class Header extends Component {
 Header.propTypes = {
     immLogin: PropTypes.object,
     immConfiguration: PropTypes.object,
+    immMenus: PropTypes.object,
     authenticate: PropTypes.func
 }

@@ -12,7 +12,7 @@ describe('Utils :: Api', () => {
     });
 
     it('Should instanciate an object with these properties', function () {
-        const mustHaveProps = [ 'request', 'delete', 'head', 'post', 'put', 'patch'];
+        const mustHaveProps = [ 'request', 'get', 'delete', 'head', 'post', 'put', 'patch'];
         const properties = Object.keys(apiInstance);
 
         expect(difference(properties, mustHaveProps).length).toBe(0);

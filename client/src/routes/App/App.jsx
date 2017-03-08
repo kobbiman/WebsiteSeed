@@ -11,10 +11,14 @@ import FontAwesome from 'react-fontawesome';
 import Header from 'src/components/Header/Header';
 import { authenticate } from 'src/actions/login';
 import { getConfiguration } from 'src/actions/configuration';
+import { getMenus } from 'src/actions/menu';
 
 export class App extends Component {
     componentDidMount () {
-        this.props.getConfiguration();
+        const { getConfiguration, getMenus } = this.props;
+
+        if (getConfiguration) getConfiguration();
+        if (getMenus) getMenus();
     }
 
     buildFeaturedBlocks () {
@@ -62,7 +66,7 @@ export class App extends Component {
     }
 
     render() {
-        const { immLogin, immConfiguration, authenticate } = this.props;
+        const { immLogin, immConfiguration, immMenus, authenticate } = this.props;
         const welcomeTitle = 'Welcome to Website Seed!';
         const welcomeMessage = 'A website seed using loopback.io and ReactJS';
         const linkLabel = 'See it on Github';
@@ -71,7 +75,12 @@ export class App extends Component {
 
         return (
             <section className="app">
-                <Header immLogin={immLogin} immConfiguration={immConfiguration} authenticate={authenticate} />
+                <Header
+                    immLogin={immLogin}
+                    immConfiguration={immConfiguration}
+                    immMenus={immMenus}
+                    authenticate={authenticate}
+                />
                 <section className="container">
                     <Jumbotron>
                         <h1>{welcomeTitle}</h1>
@@ -94,14 +103,18 @@ export class App extends Component {
 App.propTypes = {
     immLogin: PropTypes.object,
     immConfiguration: PropTypes.object,
+    immMenus: PropTypes.object,
     authenticate: PropTypes.func,
-    getConfiguration: PropTypes.func
+    getConfiguration: PropTypes.func,
+    getMenus: PropTypes.func
 }
 
 export default connect(state => ({
     immLogin: state.loginReducer,
-    immConfiguration: state.configurationReducer
+    immConfiguration: state.configurationReducer,
+    immMenus: state.menuReducer
 }), {
     authenticate,
-    getConfiguration
+    getConfiguration,
+    getMenus
 })(App);

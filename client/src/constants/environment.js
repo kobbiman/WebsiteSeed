@@ -7,7 +7,9 @@ const environment = {
     },
     endpoints: {
         login: '/Users/login',
-        configurations: '/Configurations'
+        configurations: '/Configurations',
+        menus: '/Menus',
+        menuLinks: '/MenuLinks'
     }
 }
 

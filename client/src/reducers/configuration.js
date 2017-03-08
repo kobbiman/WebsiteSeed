@@ -1,11 +1,11 @@
 import Immutable from 'immutable';
 import actionTypes from 'src/constants/actionTypes';
 
-const initialState = Immutable.fromJS({
+export const initialState = Immutable.fromJS({
     isFetching: false,
     success: false,
     error: null,
-    data: null
+    data: {}
 });
 
 const processData = settings => {
