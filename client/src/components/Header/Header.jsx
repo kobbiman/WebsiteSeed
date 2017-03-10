@@ -1,7 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
 import Login from 'src/components/Login/Login';
 import Popover from 'src/components/Common/Popover/Popover';
 import { reset, getUserId } from 'src/utils/Auth';
@@ -47,15 +44,15 @@ export default class Header extends Component {
 
         if (isAuthenticated) {
             content = (
-                <NavItem eventKey={1} href="#" onClick={this.handleCloseSession}>
+                <a href="#" onClick={this.handleCloseSession}>
                     <span id="signOutButton">Sign Out</span>
-                </NavItem>
+                </a>
             );
         } else if (!this.state.loginPopoverOpen) {
             content = (
-                <NavItem eventKey={1} href="#" onClick={this.handleToggleLoginPopover}>
+                <a href="#" onClick={this.handleToggleLoginPopover}>
                     <span id="signInButton">Sign In</span>
-                </NavItem>
+                </a>
             );
         }
 
@@ -71,9 +68,9 @@ export default class Header extends Component {
 
             if(immMenu) {
                 siteMenu = immMenu.get('links') && immMenu.get('links').map((immLink, index) => (
-                    <NavItem key={index} eventKey={index+1} href={immLink.get('url')}>
+                    <a key={index} href={immLink.get('url')}>
                         {immLink.get('label')}
-                    </NavItem>
+                    </a>
                 ));
             }
         }
@@ -88,19 +85,17 @@ export default class Header extends Component {
         const siteMenu = this.buildSiteMenu();
 
         return (
-            <Navbar fixedTop>
-                <Navbar.Header>
-                    <Navbar.Brand>
-                        <a href="#">{title}</a>
-                    </Navbar.Brand>
-                </Navbar.Header>
-                <Nav>
+            <section>
+                <div>
+                    <a href="#">{title}</a>
+                </div>
+                <nav>
                     {siteMenu}
-                </Nav>
-                <Nav pullRight>
+                </nav>
+                <nav>
                     {loginButtons}
-                </Nav>
-            </Navbar>
+                </nav>
+            </section>
         );
     }
 

@@ -1,9 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import FormControl from 'react-bootstrap/lib/FormControl';
-import HelpBlock from 'react-bootstrap/lib/HelpBlock';
-import Button from 'react-bootstrap/lib/Button';
 import { initialize } from 'src/utils/Auth';
 
 export default class Login extends Component {
@@ -54,35 +49,29 @@ export default class Login extends Component {
     render () {
         return (
             <form onSubmit={this.handleSubmit}>
-                <FormGroup
-                    controlId="username"
-                    validationState={this.state.usernameValid}
-                >
-                    <ControlLabel>Username</ControlLabel>
-                    <FormControl
+                <div>
+                    <label htmlFor="username">Username</label>
+                    <input
+                        id="username"
                         type="text"
                         value={this.state.username}
                         placeholder="Username"
                         onChange={this.handleChangeUsername}
                     />
-                    <FormControl.Feedback />
-                    <HelpBlock>Username can't be empty.</HelpBlock>
-                </FormGroup>
-                <FormGroup
-                    controlId="password"
-                    validationState={this.state.passwordValid}
-                >
-                    <ControlLabel>Password</ControlLabel>
-                    <FormControl
+                    <span>Username can't be empty.</span>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input
+                        id="password"
                         type="password"
                         value={this.state.password}
                         placeholder="*********"
                         onChange={this.handleChangePassword}
                     />
-                    <FormControl.Feedback />
-                    <HelpBlock>Password can't be empty.</HelpBlock>
-                </FormGroup>
-                <Button bsStyle="primary" type="submit" className="pull-right">Sign In</Button>
+                    <span>Password can't be empty.</span>
+                </div>
+                <button type="submit">Sign In</button>
             </form>
         );
     }

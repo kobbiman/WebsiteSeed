@@ -1,14 +1,19 @@
 {
-  "name": "LayoutContainerPlace",
-  "plural": "LayoutContainerPlaces",
+  "name": "ComponentType",
+  "plural": "ComponentTypes",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string"
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "machineName": {
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

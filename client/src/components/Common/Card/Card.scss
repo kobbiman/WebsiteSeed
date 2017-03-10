@@ -1,0 +1,29 @@
+@import 'src/style/colors.scss';
+@import 'src/style/mixins.scss';
+
+.card {
+    @include hoverable;
+
+    padding: 20px;
+    min-height: 120px;
+
+    &__title {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: $color-font-highlighted;
+
+        &--primary {
+            color: $color-primary-2;
+        }
+    }
+
+    &__icon {
+        font-size: 3em;
+        margin: 20px 0;
+        text-align: center;
+
+        &--primary {
+            color: $color-primary-2;
+        }
+    }
+}

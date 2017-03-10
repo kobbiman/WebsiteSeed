@@ -7,8 +7,8 @@
     "validateUpsert": true
   },
   "properties": {
-    "name": {
-      "type": "string"
+    "order": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -17,16 +17,6 @@
       "type": "belongsTo",
       "model": "Layout",
       "foreignKey": "layoutId"
-    },
-    "layoutContainerPlace": {
-      "type": "belongsTo",
-      "model": "LayoutContainerPlace",
-      "foreignKey": "layoutContainerPlaceId"
-    },
-    "contents": {
-      "type": "belongsTo",
-      "model": "Content",
-      "foreignKey": "contentId"
     }
   },
   "acls": [],

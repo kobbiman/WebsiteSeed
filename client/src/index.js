@@ -1,4 +1,5 @@
-import './style/index.css';
+import 'bootstrap/dist/css/bootstrap-grid.css';
+import './style/base.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';

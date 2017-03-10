@@ -83,7 +83,15 @@
     "dataSource": "website",
     "public": true
   },
-  "LayoutContainerPlace": {
+  "Component": {
+    "dataSource": "website",
+    "public": true
+  },
+  "Block": {
+    "dataSource": "website",
+    "public": true
+  },
+  "ComponentType": {
     "dataSource": "website",
     "public": true
   }

@@ -1,6 +1,6 @@
 {
-  "name": "Layout",
-  "plural": "Layouts",
+  "name": "Component",
+  "plural": "Components",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -11,22 +11,22 @@
       "type": "string",
       "required": true
     },
-    "columns": {
-      "type": "number",
+    "machineName": {
+      "type": "string",
       "required": true
+    },
+    "props": {
+      "type": [
+        "any"
+      ]
     }
   },
   "validations": [],
   "relations": {
-    "layoutPlace": {
+    "componentType": {
       "type": "belongsTo",
-      "model": "LayoutPlace",
-      "foreignKey": "layoutPlaceId"
-    },
-    "layoutContainers": {
-      "type": "hasMany",
-      "model": "LayoutContainer",
-      "foreignKey": ""
+      "model": "ComponentType",
+      "foreignKey": "componentTypeId"
     }
   },
   "acls": [],

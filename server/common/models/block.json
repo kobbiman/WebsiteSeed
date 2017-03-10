@@ -1,0 +1,39 @@
+{
+  "name": "Block",
+  "plural": "Blocks",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "order": {
+      "type": "number",
+      "required": false
+    },
+    "columns": {
+      "type": "number",
+      "required": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "component": {
+      "type": "belongsTo",
+      "model": "Component",
+      "foreignKey": "componentId"
+    },
+    "content": {
+      "type": "belongsTo",
+      "model": "Content",
+      "foreignKey": "contentId"
+    },
+    "layoutContainer": {
+      "type": "belongsTo",
+      "model": "LayoutContainer",
+      "foreignKey": "layoutContainerId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
