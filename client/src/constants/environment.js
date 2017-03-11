@@ -9,7 +9,13 @@ const environment = {
         login: '/Users/login',
         configurations: '/Configurations',
         menus: '/Menus',
-        menuLinks: '/MenuLinks'
+        menuLinks: '/MenuLinks',
+        layouts: '/Layouts',
+        layoutPlaces: '/LayoutPlaces',
+        layoutContainers: '/LayoutContainers',
+        blocks: '/Blocks',
+        components: '/Components',
+        componentTypes: '/ComponentTypes'
     }
 }
 

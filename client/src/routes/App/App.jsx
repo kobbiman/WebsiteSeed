@@ -10,13 +10,15 @@ import FeaturedPanel from 'src/components/Common/FeaturedPanel/FeaturedPanel';
 import { authenticate } from 'src/actions/login';
 import { getConfiguration } from 'src/actions/configuration';
 import { getMenus } from 'src/actions/menu';
+import { getLayoutInfo } from 'src/actions/layout';
 
 export class App extends Component {
     componentDidMount () {
-        const { getConfiguration, getMenus } = this.props;
+        const { getConfiguration, getMenus, getLayoutInfo } = this.props;
 
-        if (getConfiguration) getConfiguration();
-        if (getMenus) getMenus();
+        getConfiguration();
+        getMenus();
+        getLayoutInfo();
     }
 
     buildFeaturedBlocks () {
@@ -88,18 +90,22 @@ App.propTypes = {
     immLogin: PropTypes.object,
     immConfiguration: PropTypes.object,
     immMenus: PropTypes.object,
+    immLayout: PropTypes.object,
     authenticate: PropTypes.func,
     getConfiguration: PropTypes.func,
     getMenus: PropTypes.func,
+    getLayoutInfo: PropTypes.func,
     location: PropTypes.object
 }
 
 export default connect(state => ({
     immLogin: state.loginReducer,
     immConfiguration: state.configurationReducer,
-    immMenus: state.menuReducer
+    immMenus: state.menuReducer,
+    immLayout: state.layoutReducer
 }), {
     authenticate,
     getConfiguration,
-    getMenus
+    getMenus,
+    getLayoutInfo
 })(App);
