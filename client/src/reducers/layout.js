@@ -13,11 +13,11 @@ const initialState = Immutable.fromJS({
     componentTypes: {}
 });
 
-function toObject (collection) {
+function toObject (collection, field = 'id') {
     const object = {};
 
     collection.forEach(item => {
-        object[item.id] = item;
+        object[item[field]] = item;
     });
 
     return object;
@@ -50,7 +50,7 @@ export default function layoutReducer (state = initialState, action) {
             return state.merge({
                 isFetching: false,
                 success: true,
-                layoutPlaces: toObject(action.payload.data)
+                layoutPlaces: toObject(action.payload.data, 'path')
             });
         case actionTypes.LAYOUTS_GET_SUCCESS:
             return state.mergeDeep({

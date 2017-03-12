@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import * as Components from 'src/components/Common';
+import Components from 'src/components/Common';
 
 export default class MappedComponent extends Component {
     render () {
         const {type, props} = this.props;
-        const Component = Components[type];
+        const RequestedComponent = Components[type];
 
-        return Component && <Component {...props} />;
+        return RequestedComponent && <RequestedComponent {...props.toJS()} /> || <span />;
     }
 }
 

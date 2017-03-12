@@ -1,7 +1,6 @@
 import './Jumbotron.scss';
 
 import React, { Component, PropTypes } from 'react';
-import Button from 'react-bootstrap/lib/Button';
 import FontAwesome from 'react-fontawesome';
 
 export default class Jumbotron extends Component {
@@ -17,9 +16,9 @@ export default class Jumbotron extends Component {
             }
 
             link = (
-                <Button type="primary" href={linkHref} target="_blank" {...linkProps}>
+                <a className="jumbotron__button" href={linkHref} target="_blank" {...linkProps}>
                     {linkLabel} {icon}
-                </Button>
+                </a>
             )
         }
 
