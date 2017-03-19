@@ -1,0 +1,18 @@
+@import 'src/style/colors.scss';
+
+.login-buttons {
+    &__link {
+        display: inline-block;
+        color: $color-font-dark-background-high-contrast;
+        text-decoration: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0 10px;
+        transition: all 0.5s;
+
+        &--opened,
+        &:hover {
+            background-color: $color-secondary-2-1;
+        }
+    }
+}

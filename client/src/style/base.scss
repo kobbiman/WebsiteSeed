@@ -3,10 +3,16 @@
 
 body, html {
     margin: 0;
-    padding: 0;
-    font-family: 'PT Sans', sans-serif;
+    padding: 66px 0 0 0;
+    font-family: 'PT Sans', serif;
     font-size: 18px;
-    line-height: 1.5em;
     color: $color-font-base;
     background-color: $color-background-base;
+    word-spacing: 0.06em;
+    letter-spacing: 0.06em;
+    line-height: 1.6em;
+}
+
+h1, h2, h3, h4, h5 {
+    line-height: 1em;
 }

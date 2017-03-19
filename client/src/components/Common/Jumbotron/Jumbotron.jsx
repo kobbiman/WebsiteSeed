@@ -26,7 +26,7 @@ export default class Jumbotron extends Component {
             <section className="jumbotron">
                 <h1 className="jumbotron__title">{title}</h1>
                 <p className="jumbotron__message">{message}</p>
-                <span className="jumbotron__button">{link}</span>
+                {link}
             </section>
         );
     }

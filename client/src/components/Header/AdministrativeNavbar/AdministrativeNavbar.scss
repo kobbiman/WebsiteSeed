@@ -1,0 +1,35 @@
+@import 'src/style/colors.scss';
+
+.administrative-navbar {
+    position: fixed;
+    display: block;
+    top: 66px;
+    width: 100%;
+    background-color: $color-background-dark;
+    box-shadow: 10px 0px 10px rgba($color-background-dark, 0.4);
+    font-size: 0.7em;
+    line-height: 0.7em;
+    text-transform: uppercase;
+    z-index: 2;
+
+    &__menu {
+        list-style: none;
+    }
+
+    &__menu-item {
+        font-weight: bold;
+
+        a {
+            text-decoration: none;
+            color: $color-font-dark-background;
+            transition: all 1s;
+            padding: 5px;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: $color-background-gray;
+                color: $color-font-base;
+            }
+        }
+    }
+}

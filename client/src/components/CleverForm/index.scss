@@ -1,0 +1,68 @@
+$color-error: red;
+$color-success: green;
+$color-button: #ccc;
+$color-button-hover: #ddd;
+
+.clever-form {
+    padding: 10px;
+    color: #333;
+    line-height: 1.5em;
+
+    &__button-submit {
+        display: block;
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+        border: none;
+        background: transparent;
+        background-color: #ccc;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 1s;
+
+        &:hover {
+            background-color: $color-button-hover;
+        }
+    }
+
+    &__field {
+        margin-bottom: 20px;
+        padding: 20px;
+        transition: all 1s;
+
+        &--valid {
+            background-color: rgba($color-success, 0.2);
+        }
+
+        &--not-valid {
+            background-color: rgba($color-error, 0.2);
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__label {
+        display: block;
+    }
+
+    &__control {
+        padding: 5px;
+        transition: all 1s;
+
+        &--valid {
+            border: 1px solid $color-success;
+        }
+
+        &--not-valid {
+            border: 1px solid $color-error;
+        }
+    }
+
+    &__error {
+        font-size: 0.6em;
+        color: $color-error;
+    }
+}

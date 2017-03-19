@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+
+import CleverForm from 'src/components/CleverForm';
 import { initialize } from 'src/utils/Auth';
 
 export default class Login extends Component {
@@ -8,71 +10,84 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            usernameValid: null,
-            passwordValid: null
+            rememberMe: false
         }
 
         this.handleChangePassword = this.handleChangePassword.bind(this);
         this.handleChangeUsername = this.handleChangeUsername.bind(this);
+        this.handleChangeRememberMe = this.handleChangeRememberMe.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeUsername ({target:{value}}) {
         this.setState({
-            username: value,
-            usernameValid: value.length > 0 ? 'success' : 'error'
+            username: value
         });
     }
 
     handleChangePassword ({target:{value}}) {
         this.setState({
-            password: value,
-            passwordValid:  value.length > 0 ? 'success' : 'error'
+            password: value
         });
     }
 
-    handleSubmit (e) {
-        e.preventDefault();
-        const { onSuccess, authenticate } = this.props;
-        const { username, password, passwordValid, usernameValid } = this.state;
+    handleChangeRememberMe ({target:{value}}) {
+        this.setState({
+            rememberMe: value
+        });
+    }
 
-        if (usernameValid && passwordValid) {
-            authenticate({ username, password })
+    handleSubmit () {
+        const { onSuccess, authenticate } = this.props;
+        const { username, password } = this.state;
+
+        authenticate({ username, password })
             .then(({ payload: { data: {id: token, userId }}}) => {
                 initialize(token, userId);
                 onSuccess();
             })
-            .catch(error => window.console.log(error));
-        }
+            .catch(error => window.console.error(error));
     }
 
     render () {
+        const loginSchema = [
+            {
+                name: 'username',
+                type: 'string',
+                label: 'Username',
+                placeholder: 'juan@perez.com',
+                errorMessage: 'Provided username is invalid',
+                validation (value) {
+                    return value.length > 3 && value.length < 10
+                },
+                onChange: this.handleChangeUsername
+            },
+            {
+                name: 'password',
+                type: 'password',
+                label: 'Password',
+                placeholder: '*********',
+                errorMessage: 'Provided password is invalid',
+                validation (value) {
+                    return value.length > 4 && value.length < 20
+                },
+                onChange: this.handleChangePassword
+            },
+            {
+                name: 'rememberme',
+                type: 'checkbox',
+                label: 'Remember me',
+                value: true,
+                checked: true,
+                onChange: this.handleChangeRememberMe
+            }
+        ];
+
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        id="username"
-                        type="text"
-                        value={this.state.username}
-                        placeholder="Username"
-                        onChange={this.handleChangeUsername}
-                    />
-                    <span>Username can't be empty.</span>
-                </div>
-                <div>
-                    <label>Password</label>
-                    <input
-                        id="password"
-                        type="password"
-                        value={this.state.password}
-                        placeholder="*********"
-                        onChange={this.handleChangePassword}
-                    />
-                    <span>Password can't be empty.</span>
-                </div>
-                <button type="submit">Sign In</button>
-            </form>
+            <CleverForm
+                schema={loginSchema}
+                onSubmit={this.handleSubmit}
+            />
         );
     }
 }
