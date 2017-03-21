@@ -122,7 +122,7 @@ const getLayouts = (dispatch, getState) => {
 }
 
 const getLayoutPlaces = (dispatch, getState) => {
-    if (getState().layoutReducer.get('layoutPlaces').size) {
+    if (getState().layoutReducer.getIn(['layoutPlaces', 'byId']).size) {
         return Promise.resolve();
     }
 

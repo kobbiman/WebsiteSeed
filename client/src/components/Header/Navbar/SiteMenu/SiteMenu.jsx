@@ -1,5 +1,6 @@
 import './SiteMenu.scss';
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class SiteMenu extends Component {
     render () {
@@ -11,9 +12,9 @@ export default class SiteMenu extends Component {
 
             if(immMenu) {
                 siteMenu = immMenu.get('links') && immMenu.get('links').map((immLink, index) => (
-                    <a key={index} href={immLink.get('url')} className="site-menu__link">
+                    <Link key={index} to={immLink.get('url')} className="site-menu__link">
                         {immLink.get('label')}
-                    </a>
+                    </Link>
                 ));
             }
         }

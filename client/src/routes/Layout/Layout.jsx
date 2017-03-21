@@ -14,7 +14,7 @@ export class Layout extends Component {
     }
 
     render() {
-        const { immLogin, immConfiguration, immMenus, authenticate } = this.props;
+        const { immLogin, immConfiguration, immMenus, authenticate, children } = this.props;
 
         return (
             <section className="layout">
@@ -25,7 +25,7 @@ export class Layout extends Component {
                     authenticate={authenticate}
                 />
                 <section className="container">
-                    Layout admin area
+                    {children}
                 </section>
             </section>
         );
@@ -39,7 +39,8 @@ Layout.propTypes = {
     authenticate: PropTypes.func,
     getConfiguration: PropTypes.func,
     getMenus: PropTypes.func,
-    location: PropTypes.object
+    location: PropTypes.object,
+    children: PropTypes.element.isRequired
 }
 
 export default connect(state => ({

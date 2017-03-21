@@ -5,7 +5,10 @@ const initialState = Immutable.fromJS({
     isFetching: false,
     success: false,
     error: null,
-    layoutPlaces: {},
+    layoutPlaces: {
+        byId: {},
+        byPath: {}
+    },
     layouts: {},
     layoutContainers: {},
     blocks: {},
@@ -50,7 +53,10 @@ export default function layoutReducer (state = initialState, action) {
             return state.merge({
                 isFetching: false,
                 success: true,
-                layoutPlaces: toObject(action.payload.data, 'path')
+                layoutPlaces: {
+                    byPath: toObject(action.payload.data, 'path'),
+                    byId: toObject(action.payload.data)
+                }
             });
         case actionTypes.LAYOUTS_GET_SUCCESS:
             return state.mergeDeep({

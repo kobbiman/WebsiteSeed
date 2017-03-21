@@ -50,7 +50,7 @@ export default class MappedLayout extends Component {
 
     render () {
         const { immLayouts, location } = this.props;
-        const immLayoutPlaces = immLayouts.get('layoutPlaces');
+        const immLayoutPlaces = immLayouts.getIn(['layoutPlaces', 'byPath']);
         const immLayoutContainers = immLayouts.get('layoutContainers');
         const immBlocks = immLayouts.get('blocks');
         let immLayoutPlace = immLayoutPlaces.get(location.pathname);
