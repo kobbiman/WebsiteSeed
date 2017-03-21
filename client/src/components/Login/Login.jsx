@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import CleverForm from 'src/components/CleverForm';
 import { initialize } from 'src/utils/Auth';
+import LoginSchema from 'src/schemas/LoginSchema';
 
 export default class Login extends Component {
     constructor (props) {
@@ -50,42 +51,24 @@ export default class Login extends Component {
     }
 
     render () {
-        const loginSchema = [
+        LoginSchema.setListeners([
             {
-                name: 'username',
-                type: 'string',
-                label: 'Username',
-                placeholder: 'juan@perez.com',
-                errorMessage: 'Provided username is invalid',
-                validation (value) {
-                    return value.length > 3 && value.length < 10
-                },
-                onChange: this.handleChangeUsername
+                field: 'username',
+                handler: this.handleChangeUsername
             },
             {
-                name: 'password',
-                type: 'password',
-                label: 'Password',
-                placeholder: '*********',
-                errorMessage: 'Provided password is invalid',
-                validation (value) {
-                    return value.length > 4 && value.length < 20
-                },
-                onChange: this.handleChangePassword
+                field: 'password',
+                handler: this.handleChangePassword
             },
             {
-                name: 'rememberme',
-                type: 'checkbox',
-                label: 'Remember me',
-                value: true,
-                checked: true,
-                onChange: this.handleChangeRememberMe
+                field: 'rememberme',
+                handler: this.handleChangeRememberMe
             }
-        ];
+        ]);
 
         return (
             <CleverForm
-                schema={loginSchema}
+                schema={LoginSchema.getSchema()}
                 onSubmit={this.handleSubmit}
             />
         );

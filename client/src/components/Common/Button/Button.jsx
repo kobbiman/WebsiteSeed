@@ -37,7 +37,10 @@ Button.propTypes = {
     icon: PropTypes.string,
     label: PropTypes.string,
     onClick: PropTypes.func,
-    modifier: PropTypes.string,
+    modifier: PropTypes.oneOf([
+        'default',
+        'inverse'
+    ]),
     position: PropTypes.string,
     type: PropTypes.string,
     to: PropTypes.string,
