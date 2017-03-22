@@ -8,39 +8,12 @@ export default class Login extends Component {
     constructor (props) {
         super(props);
 
-        this.state = {
-            username: '',
-            password: '',
-            rememberMe: false
-        }
-
-        this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleChangeUsername = this.handleChangeUsername.bind(this);
-        this.handleChangeRememberMe = this.handleChangeRememberMe.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChangeUsername ({target:{value}}) {
-        this.setState({
-            username: value
-        });
-    }
-
-    handleChangePassword ({target:{value}}) {
-        this.setState({
-            password: value
-        });
-    }
-
-    handleChangeRememberMe ({target:{value}}) {
-        this.setState({
-            rememberMe: value
-        });
-    }
-
-    handleSubmit () {
+    handleSubmit (fields) {
         const { onSuccess, authenticate } = this.props;
-        const { username, password } = this.state;
+        const { username, password } = fields;
 
         authenticate({ username, password })
             .then(({ payload: { data: {id: token, userId }}}) => {
@@ -51,24 +24,9 @@ export default class Login extends Component {
     }
 
     render () {
-        LoginSchema.setListeners([
-            {
-                field: 'username',
-                handler: this.handleChangeUsername
-            },
-            {
-                field: 'password',
-                handler: this.handleChangePassword
-            },
-            {
-                field: 'rememberme',
-                handler: this.handleChangeRememberMe
-            }
-        ]);
-
         return (
             <CleverForm
-                schema={LoginSchema.getSchema()}
+                schema={LoginSchema.getPlainSchema()}
                 onSubmit={this.handleSubmit}
             />
         );

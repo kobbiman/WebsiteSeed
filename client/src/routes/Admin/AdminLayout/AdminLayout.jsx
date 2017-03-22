@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import Layout from 'src/routes/Layout/Layout';
-import { getLayoutInfo } from 'src/actions/layout';
+import { getLayoutInfo, insertLayout } from 'src/actions/layout';
 import Button from 'src/components/Common/Button/Button';
 import Table from 'src/components/Common/Table/Table';
 import ModalWindow from 'src/components/Common/ModalWindow/ModalWindow';
@@ -15,10 +15,13 @@ export class AdminLayout extends Component {
         super(props);
 
         this.state = {
-            newLayoutModalOpen: false
+            newLayoutModalOpen: false,
+            newLayoutInProgress: false,
+            newLayoutSuccess: false
         }
 
         this.handleToggleNewLayoutModal = this.handleToggleNewLayoutModal.bind(this);
+        this.handleSubmitNewLayout = this.handleSubmitNewLayout.bind(this);
     }
 
     componentDidMount() {
@@ -31,6 +34,27 @@ export class AdminLayout extends Component {
         });
     }
 
+    handleSubmitNewLayout(layout) {
+        this.setState({
+            newLayoutInProgress: true
+        });
+
+        this.props.insertLayout(layout)
+            .then(() => {
+                this.setState({
+                    newLayoutInProgress: false,
+                    newLayoutSuccess: true,
+                    newLayoutModalOpen: false
+                });
+            })
+            .catch(() => {
+                this.setState({
+                    newLayoutInProgress: false,
+                    newLayoutSuccess: false
+                });
+            });
+    }
+
     render() {
         const { immLayouts } = this.props;
         const items = immLayouts.get('layouts').map(immLayout => ({
@@ -39,17 +63,28 @@ export class AdminLayout extends Component {
             columns: immLayout.get('columns'),
             place: immLayouts.getIn(['layoutPlaces', 'byId', immLayout.get('layoutPlaceId').toString(), 'path'])
         })).toArray();
+        let layoutForm;
 
-        LayoutSchema.setListeners([
-            {
-                field: 'name',
-                handler: () => window.console.log('changed name'),
-            },
-            {
-                field: 'columns',
-                handler: () => window.console.log('changed columns'),
+        LayoutSchema.setFields({
+            layoutPlaceId: {
+                prop: 'options',
+                value: immLayouts.getIn(['layoutPlaces', 'byId']).map(immLayoutPlace => ({
+                    label: `${immLayoutPlace.get('name')} (${immLayoutPlace.get('path')})`,
+                    value: immLayoutPlace.get('id')
+                })).toArray()
             }
-        ]);
+        });
+
+        if (this.state.newLayoutModalOpen) {
+            layoutForm = (
+                <CleverForm
+                    schema={LayoutSchema.getPlainSchema()}
+                    onSubmit={this.handleSubmitNewLayout}
+                />
+            );
+        } else {
+            layoutForm = <div />;
+        }
 
         return (
             <Layout>
@@ -59,10 +94,7 @@ export class AdminLayout extends Component {
                         onClose={this.handleToggleNewLayoutModal}
                         title="New Layout"
                     >
-                        <CleverForm
-                            schema={LayoutSchema.getSchema()}
-                            onSubmit={() => true}
-                        />
+                        {layoutForm}
                     </ModalWindow>
                     <Button
                         onClick={this.handleToggleNewLayoutModal}
@@ -86,13 +118,15 @@ export class AdminLayout extends Component {
 }
 
 AdminLayout.propTypes = {
-    immLayouts: PropTypes.object,
     getLayoutInfo: PropTypes.func,
+    immLayouts: PropTypes.object,
+    insertLayout: PropTypes.func,
     location: PropTypes.object
 }
 
 export default connect(state => ({
     immLayouts: state.layoutReducer
 }), {
-    getLayoutInfo
+    getLayoutInfo,
+    insertLayout
 })(AdminLayout);

@@ -20,11 +20,17 @@ export default class CleverForm extends Component {
     handleSubmit (event) {
         event.preventDefault();
 
-        const { onSubmit } = this.props;
-        const notInvalidFields = !Object.keys(this.state.fields).find(name => !this.state.fields[name].valid );
+        const { fields } = this.state;
+        const notInvalidFields = !Object.keys(fields).find(name => !fields[name].valid );
 
         if (notInvalidFields) {
-            onSubmit();
+            const fieldsValues = {};
+
+            Object.keys(fields).forEach(fieldName => {
+                fieldsValues[fieldName] = fields[fieldName].value;
+            });
+
+            this.props.onSubmit(fieldsValues);
         }
 
         return false;

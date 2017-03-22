@@ -15,6 +15,14 @@ export default Schema({
         type: 'number',
         label: 'Columns',
         errorMessage: getErrorMessage('columns'),
-        validation: value => value >= 0 && value < 12
+        validation: value => value >= 0 && value <= 12
+    },
+    layoutPlaceId: {
+        name: 'layoutPlaceId',
+        type: 'select',
+        label: 'Layout',
+        errorMessage: getErrorMessage('layout place'),
+        options: [],
+        validation: value => !!value
     }
 });

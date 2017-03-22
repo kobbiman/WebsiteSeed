@@ -33,7 +33,10 @@ export default class CleverField extends Component {
             valid: validationResult,
             value
         });
-        onChangeField(event);
+
+        if (onChangeField) {
+            onChangeField(event);
+        }
     }
 
     buildField () {
@@ -66,11 +69,17 @@ export default class CleverField extends Component {
             case 'text':
                 return <textarea {...commonProps}>{value}</textarea>;
             case 'select':
-                options = this.field.options.map((option, index) => (
+                options = this.props.field.options.map((option, index) => (
                     <option key={index} value={option.value} selected={option.value === value}>
                         {option.label}
                     </option>
                 ));
+
+                options.push(
+                    <option selected>
+                        Select one
+                    </option>
+                );
 
                 return (
                     <select {...commonProps}>
@@ -83,7 +92,7 @@ export default class CleverField extends Component {
             case 'checkbox-group':
             case 'radio-group':
                 const optionType = type.split('-')[0];
-                options = this.field.options.map((option, index) => (
+                options = this.props.field.options.map((option, index) => (
                     <div key={index}>
                         <input type={optionType} name={name} value={option.value} checked={option.value === value} {...commonProps} />
                         <label>{option.label}</label>
